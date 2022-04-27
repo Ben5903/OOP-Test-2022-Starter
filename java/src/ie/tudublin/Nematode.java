@@ -4,6 +4,9 @@ import processing.data.TableRow;
 import javazoom.jl.player.PlayerApplet;
 import processing.core.PApplet;
 
+// Name: Ben O'Brien
+// Student Number: C20366426
+
 public class Nematode
 {
     private String name;
@@ -112,7 +115,33 @@ public class Nematode
             pa.translate(pa.width/2, (pa.height/2 - (length/2 * nemaSize)) + (nemaSize * circles));
             pa.circle(0, 0, nemaSize);
 
+            if (length - 1 == circles)
+            {
+                // to specify genders
+                switch (gender)
+                {
+                    case "m":
+                    {
+                        pa.line(0, nemaSize/2, 0, nemaSize);
+                        pa.circle(0, nemaSize + 5, 10);
+                        break;
+                    }
+                    
+                    case "h":
+                    {
+                        pa.circle(0, 0, nemaSize/2);
+                        pa.line(0, nemaSize/2, 0, nemaSize);
+                        pa.circle(0, nemaSize + 5, 10);
+                        break;
+                    }
 
+                    case "f":
+                    {
+                        pa.circle(0, 0, nemaSize/2);
+                        break;
+                    }
+                }
+            }
 
             pa.popMatrix();
         }
