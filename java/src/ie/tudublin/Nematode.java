@@ -1,6 +1,8 @@
 package ie.tudublin;
 
 import processing.data.TableRow;
+import javazoom.jl.player.PlayerApplet;
+import processing.core.PApplet;
 
 public class Nematode
 {
@@ -19,11 +21,6 @@ public class Nematode
         this.eyes = eyes;
     }
 
-    public String toString()
-    {
-        return "Nematode [eyes=" + eyes + ", gender=" + gender + ", length=" + length + ", limbs=" + limbs + ", name="
-                + name + "]";
-    }
 
     public Nematode(TableRow tr)
     {
@@ -36,7 +33,11 @@ public class Nematode
         );
     }
 
-
+    public String toString()
+    {
+        return "Nematode eyes " + eyes + ", gender " + gender + ", length " + length + ", limbs " + limbs + ", name "
+                + name + "";
+    }
 
     public String getName()
     {
@@ -88,8 +89,34 @@ public class Nematode
         this.eyes = eyes;
     }
 
+    public void render(NematodeVisualiser pa, float c)
+    {
+        pa.background(0);
+        int nemaSize = 30;
+        int sizeOfText = 10;
+        pa.fill(255);
+    
+        pa.textAlign(PApplet.CENTER, PApplet.CENTER);
+        pa.text(name, pa.width/2, (pa.height/2 - (length/2 * nemaSize) - (sizeOfText * 3)));
+
+        pa.strokeWeight(2);
+        pa.stroke(255);
+        pa.noFill();
+
+        // circle creation for nematode
+        for(int circles = 0; circles < length; circles++)
+        {
+            pa.stroke(c, 255, 255);
+            pa.strokeWeight(5);
+            pa.pushMatrix();
+            pa.translate(pa.width/2, (pa.height/2 - (length/2 * nemaSize)) + (nemaSize * circles));
+            pa.circle(0, 0, nemaSize);
 
 
-    
-    
+
+            pa.popMatrix();
+        }
+
+        
+    }
 }

@@ -5,25 +5,39 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.data.Table;
 import processing.data.TableRow;
-
 public class NematodeVisualiser extends PApplet
 {
 	ArrayList<Nematode> nematodes = new ArrayList<Nematode>();
-	
-	int choice = 0;
+
+	// created to itterate through nematodes
+	int i = 0;
 
 	public void keyPressed()
-	{		
-		if (keyCode == LEFT)
+	{
+		switch(keyCode)
 		{
-			choice = choice + 1;
+			case LEFT:
+			{
+				i=1-1;
+				if(i == -1)
+				{
+					i = nematodes.size() - 1;
+				}
+				break;
+			}
+			case RIGHT:
+			{
+				i=i+1;
+				if(i == nematodes.size())
+				{
+					i = 0;
+				}
+				break;
+			}	
 		}	
-		
-		if (keyCode == RIGHT)
-		{
-			choice = choice - 1;
-		}	
+					
 	}
+
 
 
 	public void settings()
@@ -35,21 +49,13 @@ public class NematodeVisualiser extends PApplet
 	{
 		colorMode(HSB);
 		background(0);
-		smooth();	
+		smooth();		
+		
 		loadNematodes();
-		printNematodes();
-
-	}
-
-	public void printNematodes()
-	{
-		for (Nematode n:nematodes)
-		{
-			System.out.println(n);
-		}
+		displayNematode();
 	}
 	
-	// load and populate arraylist
+
 	public void loadNematodes()
 	{
 		Table table = loadTable("nematodes.csv", "header");
@@ -61,11 +67,23 @@ public class NematodeVisualiser extends PApplet
 		}
 	}
 
-
-	public void draw()
-	{	
-
+	public void displayNematode()
+	{
+		for (Nematode n:nematodes)
+		{
+			println(n);
+		}
 	}
-	
 
+
+	public void drawNeamtodes(int index, float c)
+	{
+		nematodes.get(i).render(this, c);
+	}
+
+	
+	public void draw()
+	{
+		drawNeamtodes(i, map(i, 0, nematodes.size(), 0, 255));
+	}
 }
