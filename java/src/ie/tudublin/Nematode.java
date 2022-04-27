@@ -10,6 +10,11 @@ public class Nematode {
     private String gender;
     private int eyes;
 
+    @Override
+    public String toString() {
+        return "Name " + name + ", length" + length + ", limbs" + limbs + ", gender" + gender +", eyes" + eyes + ".";
+    }
+
     //  Nematode constructor 
     public Nematode(String name, float length, int limbs, String gender, int eyes)
     {
@@ -76,5 +81,7 @@ public class Nematode {
     {
         return eyes;
     }
+
+    
     
 }
