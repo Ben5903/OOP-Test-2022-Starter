@@ -142,6 +142,12 @@ public class Nematode
                     }
                 }
             }
+            // to specify limbs
+            if (limbs)
+            {
+                pa.line(nemaSize/2, 0, nemaSize, 0);
+                pa.line(-nemaSize, 0, -nemaSize/2, 0);
+            }
 
             pa.popMatrix();
         }
