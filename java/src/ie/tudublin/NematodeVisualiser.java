@@ -51,24 +51,20 @@ public class NematodeVisualiser extends PApplet
 	
 	// load and populate arraylist
 	public void loadNematodes()
-    {
-        Table table = loadTable("nematodes.csv", "header");
-        for(TableRow r:table.rows())
-        {
-            Nematode nema = new Nematode(r);
-            nematodes.add(nema);
-        }
-}
+	{
+		Table table = loadTable("nematodes.csv", "header");
+
+		for (TableRow r:table.rows())
+		{
+			Nematode n = new Nematode(r);
+			nematodes.add(n);
+		}
+	}
+
 
 	public void draw()
 	{	
-		int total = nematodes.size();
-		int NemaList = choice & total;
-		clear();
-		textSize(30);
-		textAlign(CENTER);
-		String Name = nematodes.get(NemaList).name;
-		text(Name, 300, 50);
+
 	}
 	
 
